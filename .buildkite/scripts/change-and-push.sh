@@ -16,4 +16,5 @@ git add datestamp
 git commit -m "Bump datestamp during CI"
 
 echo "--- :git: git push"
+git pull --rebase
 git push
