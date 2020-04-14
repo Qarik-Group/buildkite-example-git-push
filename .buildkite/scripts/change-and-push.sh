@@ -14,6 +14,10 @@ echo "--- :git: git commit"
 }
 git config --global --get push.default || git config --global push.default simple
 
+[[ -n "$BUILDKITE_BRANCH" ]] && {
+  git checkout "${BUILDKITE_BRANCH}"
+}
+
 git add datestamp
 git commit -m "Bump datestamp during CI"
 
