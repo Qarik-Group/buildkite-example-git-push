@@ -1,0 +1,5 @@
+name: "buildkite-example-git-push"
+description: Example for a Buildkite step adding a new `git commit` and then doing a `git push`
+steps:
+- command: buildkite-agent pipeline upload
+  label: ":pipeline:"
