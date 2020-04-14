@@ -1,0 +1,3 @@
+steps:
+- label: ":git:"
+  command: .buildkite/scripts/change-and-push.sh
