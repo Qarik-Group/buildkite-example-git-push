@@ -13,10 +13,12 @@ git config --global --get push.default >/dev/null || git config --global push.de
 
 git config --list
 
-[[ -n "$BUILDKITE_BRANCH" ]] && {
-  git fetch origin "$BUILDKITE_BRANCH"
-  git checkout "${BUILDKITE_BRANCH}"
-}
+echo "--- :git: clone"
+
+repo_url="$(git config remote.origin.url)"
+branch="${BUILDKITE_BRANCH:-$(git branch --show-current)}"
+git clone "$repo_url" -b "$branch" tmp/pushme
+cd tmp/pushme
 
 echo "--- :date: bump datestamp"
 
