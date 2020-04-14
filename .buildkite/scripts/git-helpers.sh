@@ -4,7 +4,7 @@ set -euo pipefail
 set -x
 
 function git_clone {
-  echo "--- :git: setup git"
+  echo "--- :git: setup"
 
   [[ -n "${BUILDKITE_BUILD_CREATOR_EMAIL}" ]] && {
     git config --global user.email "${BUILDKITE_BUILD_CREATOR_EMAIL}"
