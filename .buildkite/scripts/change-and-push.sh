@@ -11,6 +11,8 @@ echo "--- :git: setup git"
 }
 git config --global --get push.default >/dev/null || git config --global push.default simple
 
+git config --list
+
 [[ -n "$BUILDKITE_BRANCH" ]] && {
   git fetch origin "$BUILDKITE_BRANCH"
   git checkout "${BUILDKITE_BRANCH}"
