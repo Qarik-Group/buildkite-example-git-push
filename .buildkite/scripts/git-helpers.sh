@@ -1,10 +1,11 @@
 #!/bin/bash
 
 set -euo pipefail
-set -x
 
 function git_clone {
   echo "--- :git: setup"
+  (
+  set -x
 
   [[ -n "${BUILDKITE_BUILD_CREATOR_EMAIL}" ]] && {
     git config --global user.email "${BUILDKITE_BUILD_CREATOR_EMAIL}"
@@ -19,5 +20,6 @@ function git_clone {
   repo_url="$(git config remote.origin.url)"
   branch="${BUILDKITE_BRANCH:-$(git branch --show-current)}"
   git clone "$repo_url" -b "$branch" tmp/pushme
+  )
   cd tmp/pushme
 }
