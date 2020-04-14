@@ -1,6 +1,7 @@
 #!/bin/bash
 
-set -eu
+set -euo pipefail
+set -x
 
 echo "--- :git: setup git"
 
@@ -8,9 +9,10 @@ echo "--- :git: setup git"
   git config --global user.email "${BUILDKITE_BUILD_CREATOR_EMAIL}"
   git config --global user.name  "${BUILDKITE_BUILD_CREATOR}"
 }
-git config --global --get push.default || git config --global push.default simple
+git config --global --get push.default >/dev/null || git config --global push.default simple
 
 [[ -n "$BUILDKITE_BRANCH" ]] && {
+  git fetch origin "$BUILDKITE_BRANCH"
   git checkout "${BUILDKITE_BRANCH}"
 }
 
