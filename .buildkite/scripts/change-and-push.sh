@@ -7,14 +7,22 @@ source .buildkite/scripts/git-helpers.sh
 git_clone
 
 echo "--- :date: bump datestamp"
-
-date +%s > datestamp
+(
+  set -x
+  date +%s > datestamp
+)
 
 echo "--- :git: git commit"
+(
+  set -x
 
-git add datestamp
-git commit -m "Bump datestamp during CI"
+  git add datestamp
+  git commit -m "Bump datestamp during CI"
+)
 
 echo "--- :git: git push"
-git pull --rebase
-git push
+(
+  set -x
+  git pull --rebase
+  git push
+)
